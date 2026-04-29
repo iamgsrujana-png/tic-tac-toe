@@ -1,0 +1,336 @@
+:root {
+  --bg-1: #fdf1d5;
+  --bg-2: #ffc6ac;
+  --bg-3: #ff8fab;
+  --ink: #2b2d42;
+  --muted: #595d85;
+  --surface: rgba(255, 255, 255, 0.9);
+  --surface-strong: #ffffff;
+  --x-color: #118ab2;
+  --o-color: #ef476f;
+  --accent: #06d6a0;
+  --shadow-lg: 0 20px 50px rgba(43, 45, 66, 0.2);
+  --shadow-md: 0 10px 28px rgba(43, 45, 66, 0.14);
+  --radius-lg: 26px;
+  --radius-md: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: radial-gradient(circle at 15% 10%, var(--bg-1), transparent 40%),
+    radial-gradient(circle at 85% 15%, #ffb4c8, transparent 34%),
+    radial-gradient(circle at 80% 90%, #c0f3e7, transparent 30%),
+    linear-gradient(135deg, var(--bg-2), var(--bg-3));
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.app {
+  width: min(820px, 100%);
+}
+
+.game-shell {
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(14px);
+  background: rgba(255, 255, 255, 0.48);
+  border: 1px solid rgba(255, 255, 255, 0.58);
+  box-shadow: var(--shadow-lg);
+  padding: clamp(18px, 3vw, 32px);
+  display: grid;
+  gap: 16px;
+}
+
+.hero h1 {
+  margin: 0;
+  font-family: "Baloo 2", "Trebuchet MS", sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 0.94;
+}
+
+.kicker {
+  margin: 0 0 6px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.subtitle {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 0.96rem;
+}
+
+.panel {
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: var(--shadow-md);
+}
+
+.panel-controls {
+  padding: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.control-group {
+  display: inline-flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.mode-btn {
+  border: 0;
+  border-radius: 999px;
+  padding: 11px 14px;
+  font-weight: 700;
+  color: var(--muted);
+  background: #eef2ff;
+  cursor: pointer;
+  transition: transform 220ms ease, color 220ms ease, background 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.mode-btn:hover {
+  transform: translateY(-1px);
+}
+
+.mode-btn.active {
+  color: #ffffff;
+  background: linear-gradient(120deg, #ff6b6b, #f06595);
+  box-shadow: 0 8px 18px rgba(240, 101, 149, 0.4);
+}
+
+.difficulty-wrap {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 0.88rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+#difficulty {
+  border: 1px solid #d7d8f8;
+  border-radius: 12px;
+  padding: 8px 10px;
+  font-weight: 700;
+  background: #ffffff;
+  color: var(--ink);
+}
+
+#difficulty:disabled {
+  opacity: 0.58;
+}
+
+.scoreboard {
+  padding: 12px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.score-card {
+  border-radius: 14px;
+  text-align: center;
+  padding: 12px 8px;
+  background: var(--surface-strong);
+}
+
+.score-card .label {
+  margin: 0;
+  font-size: 0.81rem;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.score-card .value {
+  margin: 6px 0 0;
+  font-size: 1.6rem;
+  font-weight: 800;
+  font-family: "Baloo 2", "Trebuchet MS", sans-serif;
+}
+
+.score-card.x .value {
+  color: var(--x-color);
+}
+
+.score-card.o .value {
+  color: var(--o-color);
+}
+
+.score-card.draw .value {
+  color: var(--accent);
+}
+
+.board-area {
+  display: grid;
+  gap: 12px;
+  justify-items: center;
+}
+
+.status {
+  min-height: 1.6em;
+  margin: 0;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.status.thinking {
+  color: #8d4975;
+}
+
+.board-frame {
+  position: relative;
+  width: min(78vw, 430px);
+  aspect-ratio: 1 / 1;
+}
+
+.board {
+  width: 100%;
+  height: 100%;
+  padding: 14px;
+  border-radius: 24px;
+  background: var(--surface);
+  box-shadow: var(--shadow-md);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.cell {
+  border: 0;
+  border-radius: 18px;
+  background: #f7f8ff;
+  font-family: "Baloo 2", "Trebuchet MS", sans-serif;
+  font-size: clamp(2rem, 10vw, 3.35rem);
+  font-weight: 800;
+  cursor: pointer;
+  color: var(--ink);
+  transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease,
+    color 220ms ease;
+}
+
+.cell:hover:enabled {
+  transform: translateY(-3px);
+  box-shadow: 0 11px 22px rgba(37, 39, 79, 0.16);
+}
+
+.cell:active:enabled {
+  transform: scale(0.97);
+}
+
+.cell.x {
+  color: var(--x-color);
+  background: #e8f7ff;
+}
+
+.cell.o {
+  color: var(--o-color);
+  background: #ffeaf0;
+}
+
+.cell:disabled {
+  cursor: not-allowed;
+}
+
+.cell.win {
+  animation: winningPulse 700ms ease-in-out infinite alternate;
+  box-shadow: 0 0 0 3px rgba(6, 214, 160, 0.35);
+}
+
+.win-line {
+  --line-x: 0px;
+  --line-y: 0px;
+  --line-length: 0px;
+  --line-angle: 0deg;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 10px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #06d6a0, #1b9aaa);
+  box-shadow: 0 0 12px rgba(27, 154, 170, 0.6);
+  transform-origin: left center;
+  transform: translate(var(--line-x), var(--line-y)) rotate(var(--line-angle));
+  width: 0;
+  opacity: 0;
+  transition: width 430ms cubic-bezier(0.2, 0.8, 0.2, 1), opacity 260ms ease;
+}
+
+.win-line.visible {
+  width: var(--line-length);
+  opacity: 1;
+}
+
+.actions {
+  padding: 12px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.actions button {
+  border: 0;
+  border-radius: 12px;
+  padding: 11px 16px;
+  font-weight: 700;
+  cursor: pointer;
+  color: #ffffff;
+  background: linear-gradient(130deg, #1b9aaa, #118ab2);
+  transition: transform 200ms ease, box-shadow 200ms ease, filter 200ms ease;
+}
+
+.actions button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(17, 138, 178, 0.35);
+}
+
+.actions button:active {
+  transform: scale(0.97);
+}
+
+.actions .danger {
+  background: linear-gradient(130deg, #ff6b6b, #ef476f);
+}
+
+@keyframes winningPulse {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.035);
+  }
+}
+
+@media (max-width: 630px) {
+  .panel-controls {
+    justify-content: center;
+  }
+
+  .scoreboard {
+    grid-template-columns: 1fr;
+  }
+
+  .score-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-inline: 14px;
+  }
+}
