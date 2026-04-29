@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tic Tac Twist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <section class="game-shell">
+        <header class="hero">
+          <p class="kicker">Arcade Board</p>
+          <h1>Tic Tac Twist</h1>
+          <p class="subtitle">Fast rounds, smart rivals, smooth wins.</p>
+        </header>
+
+        <section class="panel panel-controls" aria-label="Game mode controls">
+          <div class="control-group" role="group" aria-label="Mode selector">
+            <button class="mode-btn active" data-mode="PVP" type="button">Player vs Player</button>
+            <button class="mode-btn" data-mode="AI" type="button">Player vs AI</button>
+          </div>
+
+          <label class="difficulty-wrap" for="difficulty">
+            AI Level
+            <select id="difficulty" name="difficulty">
+              <option value="basic">Basic</option>
+              <option value="minimax">Minimax</option>
+            </select>
+          </label>
+        </section>
+
+        <section class="panel scoreboard" aria-label="Scoreboard">
+          <article class="score-card x" aria-live="polite">
+            <p class="label" id="label-x">Player 1 (X)</p>
+            <p class="value" id="score-x">0</p>
+          </article>
+          <article class="score-card draw" aria-live="polite">
+            <p class="label">Draws</p>
+            <p class="value" id="score-draw">0</p>
+          </article>
+          <article class="score-card o" aria-live="polite">
+            <p class="label" id="label-o">Player 2 (O)</p>
+            <p class="value" id="score-o">0</p>
+          </article>
+        </section>
+
+        <section class="board-area">
+          <p id="status" class="status" aria-live="polite"></p>
+
+          <div class="board-frame">
+            <div class="board" id="board" role="grid" aria-label="Tic Tac Toe board"></div>
+            <div class="win-line" id="win-line" aria-hidden="true"></div>
+          </div>
+        </section>
+
+        <section class="panel actions" aria-label="Game actions">
+          <button id="restart-round" type="button">Restart Round</button>
+          <button id="reset-all" type="button" class="danger">Reset Scores</button>
+        </section>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
